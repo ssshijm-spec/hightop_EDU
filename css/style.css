@@ -265,7 +265,7 @@ main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
 .card--featured .desc { color: rgba(255, 255, 255, 0.62); }
 .card--featured .card-footer { border-top-color: rgba(255, 255, 255, 0.10); }
 .card--featured .card-badge { color: rgba(255, 255, 255, 0.45); }
-.card--featured .arrow { color: rgba(196, 90, 106, 0.85); }
+.card--featured .arrow { color: rgba(126, 181, 255, 0.85); }
 .card--featured:hover {
   box-shadow: 0 16px 48px rgba(26, 26, 28, 0.22);
   border-color: transparent;
