@@ -181,6 +181,7 @@ main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
   font-size: 0.722rem; font-weight: 600; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--gold); margin: 0 0 6px;
 }
+.eyebrow--bold { font-weight: 800; }
 
 /* ── 홈 카드 ── */
 .cards { display: grid; gap: 14px; }
@@ -452,11 +453,9 @@ table.guide td:first-child { color: var(--gold); font-weight: 700; }
 .location-section { margin-top: 56px; }
 
 .location-addr {
-  display: inline-flex; align-items: center; gap: 6px;
   font-size: 0.944rem; color: var(--ink-soft);
   margin: 0 0 12px; line-height: 1.6;
 }
-.location-addr svg { color: var(--gold); flex-shrink: 0; }
 
 .map-link-btn {
   display: inline-flex; align-items: center; gap: 6px;
@@ -504,8 +503,7 @@ table.guide td:first-child { color: var(--gold); font-weight: 700; }
   box-shadow: var(--shadow-sm);
   transform: translateY(-2px);
 }
-.sl-icon { font-size: 18px; flex-shrink: 0; }
-.sl-label { flex: 1; }
+.sl-label { flex: 1; font-weight: 600; }
 .sl-arrow {
   font-size: 0.833rem; color: var(--muted);
   transition: transform var(--dur-fast) var(--ease-out),
