@@ -28,7 +28,7 @@
       '<div class="section-hd">' +
         '<p class="eyebrow eyebrow--bold">LOCATION</p>' +
         '<h2 class="section-big-title">오시는 길</h2>' +
-        '<p class="location-addr">경기 성남시 중원구 광명로 124 5층</p>' +
+        '<p class="location-addr">경기 성남시 중원구 광명로 124 5층 하이탑에듀 고등대입전문관</p>' +
         '<a class="map-link-btn" href="https://map.naver.com/v5/search/%EA%B2%BD%EA%B8%B0%20%EC%84%B1%EB%82%A8%EC%8B%9C%20%EC%A4%91%EC%9B%90%EA%B5%AC%20%EA%B4%91%EB%AA%85%EB%A1%9C%20124" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>' +
       '</div>' +
       '<div class="map-frame-wrap">' +
