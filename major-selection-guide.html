@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계열별 선택과목 가이드 — HighTop</title>
+  <script>(function(){try{if(localStorage.getItem('hte_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="site-inner">
+      <a class="logo" href="index.html"><span class="brand">HighTop</span></a>
+      <nav class="tabs">
+        <a class="tab active" href="major-selection-guide.html">계열 가이드</a>
+        <a class="tab" href="special-autonomous-schools.html">특목·자사</a>
+        <a class="tab" href="girls-high-schools.html">여자고</a>
+        <a class="tab" href="boys-high-schools.html">남자고</a>
+      </nav>
+      <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="테마 전환">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title">🎯 계열별 선택과목 가이드</h1>
+    <p class="page-sub">12개 계열별 핵심·권장 과목 (상위 대학 기준 · 더미 데이터)</p>
+
+    <div class="hint" id="uniNote"></div>
+
+    <h2 class="section-h">이공계열</h2>
+    <table class="guide" id="tbl-eng"></table>
+
+    <h2 class="section-h">인문·사회계열</h2>
+    <table class="guide" id="tbl-hum"></table>
+
+    <p class="todo">※ 추후: 서울대·고려대 등 대학별 차등 컬럼, 수시/정시 반영 여부, 교과평가 주의사항 추가 예정</p>
+  </main>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <span class="fbrand">HighTop</span>
+      <small>송도 고교학점제 선택과목 가이드 · 참고용 자료이며 실제 편성은 각 학교 공지를 확인하세요.</small>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('uniNote').textContent =
+      '📌 반영 대학(예시): ' + UNIVERSITIES.join(', ');
+
+    function buildGuideTable(tblId, cat) {
+      const rows = MAJORS.filter(m => m.category === cat).map(m => `
+        <tr>
+          <td><strong>${m.name}</strong></td>
+          <td>${m.core.join(', ')}</td>
+          <td>${m.recommend.join(', ')}</td>
+        </tr>`).join('');
+      document.getElementById(tblId).innerHTML =
+        `<thead><tr><th>계열</th><th>핵심 권장</th><th>추가 권장</th></tr></thead><tbody>${rows}</tbody>`;
+    }
+    buildGuideTable('tbl-eng', '이공');
+    buildGuideTable('tbl-hum', '인문사회');
+  </script>
+</body>
+</html>

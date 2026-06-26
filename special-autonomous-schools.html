@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>특목·자사고등학교 — HighTop</title>
+  <script>(function(){try{if(localStorage.getItem('hte_theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="site-inner">
+      <a class="logo" href="index.html"><span class="brand">HighTop</span></a>
+      <nav class="tabs">
+        <a class="tab" href="major-selection-guide.html">계열 가이드</a>
+        <a class="tab active" href="special-autonomous-schools.html">특목·자사</a>
+        <a class="tab" href="girls-high-schools.html">여자고</a>
+        <a class="tab" href="boys-high-schools.html">남자고</a>
+      </nav>
+      <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="테마 전환">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title" id="pageTitle">특목·자사고등학교</h1>
+    <p class="page-sub">전공(계열)을 선택하면 각 학교 과목표에서 필요한 과목이 강조됩니다.</p>
+
+    <div class="major-picker" id="majorPicker"></div>
+    <div class="hint" id="hint"></div>
+    <div class="legend">
+      <span><i class="swatch core"></i> 핵심 권장 과목</span>
+      <span><i class="swatch rec"></i> 추가 권장 과목</span>
+    </div>
+
+    <div id="schools"></div>
+  </main>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <span class="fbrand">HighTop</span>
+      <small>송도 고교학점제 선택과목 가이드 · 참고용 자료이며 실제 편성은 각 학교 공지를 확인하세요.</small>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    renderMajorPicker('majorPicker');
+    renderSchoolPage('special');
+  </script>
+</body>
+</html>

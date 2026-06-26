@@ -1,0 +1,266 @@
+/* ============================================================
+ * HighTop — style.css
+ * 라이트(기본) ↔ 다크 테마 토글. 색은 전부 CSS 변수로.
+ *   :root                  = 라이트(기본, 고급스러운 밝은 톤)
+ *   html[data-theme=dark]  = 다크(딥 네이비 + 골드)
+ * ============================================================ */
+
+/* ── 라이트 (기본) ── */
+:root {
+  color-scheme: light;
+  --bg:        #eef1f7;
+  --bg-grad:   radial-gradient(1100px 540px at 50% -8%, #ffffff 0%, #eef1f7 58%);
+  --header-bg: #ffffff;
+  --card:      #ffffff;
+  --card-2:    #f5f8fc;
+  --subj-bg:   #f3f5fa;
+  --line:      #e3e8f1;
+  --line-soft: #edf0f6;
+
+  --ink:       #1a2234;
+  --ink-soft:  #404a63;
+  --muted:     #737f9a;
+
+  --gold:      #b88a2c;
+  --gold-dk:   #9a7322;
+  --gold-soft: rgba(184,138,44,.14);
+  --brand-grad: linear-gradient(92deg, #a87f24 0%, #d4af4f 50%, #9a7322 100%);
+  --blue:      #3f6fe0;
+  --blue-dk:   #2b56c4;
+  --blue-soft: rgba(63,111,224,.10);
+
+  --core-bg:   rgba(184,138,44,.16);
+  --core-bd:   rgba(184,138,44,.5);
+  --core-ink:  #7d5a13;
+  --rec-bg:    rgba(63,111,224,.12);
+  --rec-bd:    rgba(63,111,224,.42);
+  --rec-ink:   #2b56c4;
+
+  --radius:    16px;
+  --shadow:    0 10px 30px rgba(26,34,52,.10);
+  --shadow-sm: 0 2px 12px rgba(26,34,52,.06);
+}
+
+/* ── 다크 ── */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:        #0b0f1a;
+  --bg-grad:   radial-gradient(1200px 600px at 50% -10%, #16203a 0%, #0b0f1a 60%);
+  --header-bg: #0c1120;
+  --card:      #131a2b;
+  --card-2:    #182138;
+  --subj-bg:   #0f1525;
+  --line:      #273150;
+  --line-soft: #1e273f;
+
+  --ink:       #eef2fb;
+  --ink-soft:  #c4cde0;
+  --muted:     #8a96b2;
+
+  --gold:      #e7c067;
+  --gold-dk:   #c79a3c;
+  --gold-soft: rgba(231,192,103,.14);
+  --brand-grad: linear-gradient(92deg, #e7c067 0%, #f6e2a8 55%, #e7c067 100%);
+  --blue:      #6f9bff;
+  --blue-dk:   #3f6fe0;
+  --blue-soft: rgba(111,155,255,.14);
+
+  --core-bg:   rgba(231,192,103,.16);
+  --core-bd:   rgba(231,192,103,.55);
+  --core-ink:  #f3d488;
+  --rec-bg:    rgba(111,155,255,.15);
+  --rec-bd:    rgba(111,155,255,.5);
+  --rec-ink:   #aac2ff;
+
+  --shadow:    0 8px 30px rgba(0,0,0,.35);
+  --shadow-sm: 0 2px 12px rgba(0,0,0,.25);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+  background: var(--bg);
+  background-image: var(--bg-grad);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+/* ── 헤더 (로고 + 탭 + 토글) ── */
+header.site {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-sm);
+  position: sticky; top: 0; z-index: 20;
+}
+.site-inner {
+  max-width: 780px; margin: 0 auto;
+  padding: 11px 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.logo { flex: 0 0 auto; text-decoration: none; }
+.logo .brand {
+  font-weight: 900; font-size: 20px; letter-spacing: -0.4px;
+  background: var(--brand-grad);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--gold);
+}
+
+/* 탭 네비게이션 (제목 우측) */
+nav.tabs {
+  flex: 1 1 auto; display: flex; gap: 6px; align-items: center;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; padding: 2px 0;
+}
+nav.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 0 0 auto; text-decoration: none; white-space: nowrap;
+  padding: 6px 11px; border-radius: 9px; font-size: 12.5px; font-weight: 600;
+  color: var(--muted); border: 1px solid transparent; transition: all .12s ease;
+}
+.tab:hover { color: var(--ink); background: var(--card-2); }
+.tab.active {
+  color: var(--core-ink); background: var(--gold-soft); border-color: var(--core-bd); font-weight: 800;
+}
+
+/* 테마 토글 */
+.theme-toggle {
+  flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  cursor: pointer; font-size: 16px; line-height: 1; display: grid; place-items: center;
+  transition: border-color .12s ease, transform .08s ease;
+}
+.theme-toggle:hover { border-color: var(--gold-dk); }
+.theme-toggle:active { transform: scale(.94); }
+
+/* ── 레이아웃 ── */
+main { max-width: 780px; margin: 0 auto; padding: 26px 20px 72px; }
+.page-title { font-size: 25px; font-weight: 800; letter-spacing: -0.5px; margin: 8px 0 6px; }
+.page-sub { color: var(--muted); font-size: 14.5px; margin: 0 0 26px; }
+.eyebrow { color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin: 0 0 4px; }
+
+/* ── 홈 카드 메뉴 ── */
+.cards { display: grid; gap: 14px; }
+.card {
+  position: relative; display: block; text-decoration: none; color: inherit;
+  background: linear-gradient(160deg, var(--card-2) 0%, var(--card) 100%);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 20px 20px 18px; box-shadow: var(--shadow-sm);
+  overflow: hidden; transition: transform .12s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(var(--gold), var(--gold-dk)); opacity: .85;
+}
+.card:hover { transform: translateY(-2px); border-color: var(--gold-dk); box-shadow: var(--shadow); }
+.card:active { transform: scale(.995); }
+.card .ico { font-size: 27px; }
+.card .ttl { font-weight: 800; font-size: 17.5px; margin: 8px 0 3px; letter-spacing: -0.3px; }
+.card .desc { color: var(--muted); font-size: 13px; }
+.card .arrow { position: absolute; right: 18px; top: 22px; color: var(--muted); font-size: 18px; transition: transform .15s ease, color .15s ease; }
+.card:hover .arrow { transform: translateX(3px); color: var(--gold); }
+
+/* ── 전공 선택 칩 ── */
+.major-picker { margin: 4px 0 22px; }
+.major-group-label { font-size: 11.5px; color: var(--gold); font-weight: 800; letter-spacing: 1px; margin: 14px 0 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--ink-soft);
+  cursor: pointer; transition: all .12s ease;
+}
+.chip:hover { border-color: var(--gold-dk); color: var(--ink); }
+.chip.active {
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dk) 100%);
+  border-color: var(--gold); color: #fff; font-weight: 800;
+  box-shadow: 0 4px 14px var(--gold-soft);
+}
+
+/* 선택 안내 */
+.hint {
+  background: var(--blue-soft); border: 1px solid var(--rec-bd); color: var(--rec-ink);
+  border-radius: 12px; padding: 12px 14px; font-size: 13px; margin: 0 0 18px; line-height: 1.5;
+}
+.hint strong { color: var(--ink); }
+
+/* ── 학교 / 과목 ── */
+.school {
+  background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
+  padding: 16px 16px 14px; margin: 0 0 16px; box-shadow: var(--shadow-sm);
+}
+.school h2 {
+  font-size: 16.5px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); letter-spacing: -0.3px;
+}
+.school h2::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.subjects { display: flex; flex-wrap: wrap; gap: 8px; }
+.subj {
+  border: 1px solid var(--line); background: var(--subj-bg);
+  border-radius: 9px; padding: 7px 11px; font-size: 13px; color: var(--ink-soft);
+  transition: all .15s ease;
+}
+.subj.core {
+  background: var(--core-bg); border-color: var(--core-bd); color: var(--core-ink); font-weight: 800;
+}
+.subj.recommend {
+  background: var(--rec-bg); border-color: var(--rec-bd); color: var(--rec-ink); font-weight: 700;
+}
+
+/* 범례 */
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin: 0 0 18px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 14px; height: 14px; border-radius: 5px; display: inline-block; }
+.swatch.core { background: var(--core-bg); border: 1px solid var(--core-bd); }
+.swatch.rec  { background: var(--rec-bg); border: 1px solid var(--rec-bd); }
+
+/* 표 (계열 가이드) */
+table.guide {
+  width: 100%; border-collapse: collapse; font-size: 13px; background: var(--card);
+  border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm);
+}
+table.guide th, table.guide td { border-bottom: 1px solid var(--line-soft); padding: 11px 13px; text-align: left; vertical-align: top; }
+table.guide tr:last-child td { border-bottom: 0; }
+table.guide th { background: var(--card-2); font-weight: 800; color: var(--ink); font-size: 12.5px; letter-spacing: .3px; }
+table.guide td:first-child { color: var(--gold); font-weight: 700; }
+.section-h { font-size: 16px; margin: 22px 0 10px; display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.section-h::before { content: ""; width: 4px; height: 16px; border-radius: 2px; background: var(--gold); }
+
+/* 기타 */
+.todo { color: var(--muted); font-size: 11.5px; font-style: italic; margin-top: 8px; opacity: .8; }
+
+/* ── 푸터 ── */
+footer.site { border-top: 1px solid var(--line-soft); margin-top: 40px; }
+.footer-inner { max-width: 780px; margin: 0 auto; padding: 24px 20px 40px; display: flex; flex-direction: column; gap: 4px; }
+.footer-inner .fbrand { font-weight: 800; color: var(--gold); font-size: 14px; letter-spacing: -0.3px; }
+.footer-inner small { color: var(--muted); font-size: 11.5px; }
+
+/* ============================================================
+ * 반응형 — 태블릿(>=600px) / 데스크톱(>=900px)
+ * ============================================================ */
+@media (min-width: 600px) {
+  .site-inner, main, .footer-inner { max-width: 860px; }
+  main { padding: 36px 24px 80px; }
+  .logo .brand { font-size: 22px; }
+  .tab { font-size: 13px; padding: 7px 13px; }
+
+  .page-title { font-size: 30px; }
+  .page-sub { font-size: 15.5px; }
+
+  .cards { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { padding: 24px 22px 22px; }
+  .card .ico { font-size: 30px; }
+  .card .ttl { font-size: 18.5px; }
+
+  .subj { font-size: 13.5px; padding: 8px 12px; }
+  table.guide th, table.guide td { padding: 13px 16px; font-size: 13.5px; }
+}
+
+@media (min-width: 900px) {
+  .site-inner, main, .footer-inner { max-width: 1000px; }
+  #schools { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  #schools .school { margin: 0; }
+  .page-title { font-size: 33px; }
+}
